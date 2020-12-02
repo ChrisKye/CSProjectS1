@@ -17,27 +17,13 @@ public class CSProjectS1 {
      */
     //Feature Engineering
     //Matrix Mult function
+    
     public static double[][] mult(double[][] x, double[][] y) {
         double[][] res = new double[x.length][y[0].length];
-        for (int i = 0; i < x.length; i++) { //loop over rows of x
-            for (int j = 0; j < x[0].length; j++) { //loop over column in each row of x
-                double rowsum = 0.0;
-                int k;
-                for (k = 0; k < y[0].length; k++){ //loop over columns of y
-                    rowsum += x[i][j]*y[j][k];
-                }
-                res[i][k] = rowsum;
-            }
-        }
-        return res;
-    }
-    
-    public static double[][] mult2(double[][] x, double[][] y) {
-        double[][] res = new double[x.length][y[0].length];
-        for(int i=0;i<x.length;i++){    
-            for(int j = 0; i < y[0].length;j++) {
+        for(int i=0; i < x.length; i++){    
+            for(int j = 0; j < y[0].length;j++) {
                 res[i][j] = 0;
-                for (int k=0;k<x[0].length;k++) {
+                for (int k = 0; k < x[0].length; k++) {
                     res[i][j] += x[i][k]*y[k][j];
                 }
             }
@@ -46,12 +32,19 @@ public class CSProjectS1 {
     }
     
     //Sigmoid hypothesis function
-    public static double hypo(double[][] x, double[][] theta) {
-        double[][] inner = mult(x, theta);
-        double sigmoidHypo = 1/(1+Math.exp(inner[0][0]));
+    public static double[][] hypo(double[][] x, double[][] theta) {
+        double[][] inner = (mult(x, theta));
+        double[][] sigmoidHypo = new double[x.length][1];
+        for (int i = 0; i < x.length; i++) {
+            sigmoidHypo[i][1] = 1/(1+Math.exp(inner[i][0]));
+        }
         return sigmoidHypo;
     }
-    //Cost function
+    //Vectorized Cost function
+    public static double[][] cost(double[][] theta) {
+        
+    }
+    
     //Gradient Descent
     //
     public static void main(String[] args) {
@@ -64,8 +57,8 @@ public class CSProjectS1 {
             {5},
             {6}
         };
-        
-        System.out.print(mult2(a,b));
+        double[][] test = mult2(a,b);
+        System.out.print(test[0][0]);
         
         
     }
