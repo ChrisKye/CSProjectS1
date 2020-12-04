@@ -41,11 +41,17 @@ public class CSProjectS1 {
         return sigmoidHypo;
     }
     //Vectorized Cost function
-    public static double[][] cost(double[][] theta) {
+    public static double[][] cost(double[][] theta, double[][] h, double[][] y) {
+        int m = h.length;
+        double[][] jcost = new double[m][];
+        for (int i = 0; i < m; i++) {
+            jcost[i] = (1/m)*(-y[i][0]*Math.log(h[i][0]))
         
+        }
     }
     
-    //Gradient Descent
+    //Gradient function
+    
     //
     public static void main(String[] args) {
         // TODO code application logic here
